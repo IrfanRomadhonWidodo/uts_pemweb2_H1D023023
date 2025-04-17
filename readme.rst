@@ -1,71 +1,55 @@
-###################
-What is CodeIgniter
-###################
+# UTS Pemrograman Web 2 (H1D023023)
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Repository ini berisi project **Ujian Tengah Semester** untuk mata kuliah **Pemrograman Web 2**.
 
-*******************
-Release Information
-*******************
+## 👨‍🎓 Informasi Mahasiswa
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+- **Nama:** Irfan Romadhon Widodo  
+- **NIM:** H1D023023  
+- **Kelas:** Pemrograman Web 2
 
-**************************
-Changelog and New Features
-**************************
+---
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+## 📋 Deskripsi Project
 
-*******************
-Server Requirements
-*******************
+Project ini merupakan implementasi aplikasi web yang dikembangkan sebagai bagian dari penilaian UTS.  
+Aplikasi ini mendemonstrasikan pemahaman terhadap konsep dan teknik pemrograman web yang telah dipelajari selama setengah semester.
 
-PHP version 5.6 or newer is recommended.
+---
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+## ✨ Fitur
 
-************
-Installation
-************
+- CRUD data alumni  
+- Pencarian alumni berdasarkan kata kunci dan tahun lulus  
+- Statistik jumlah alumni per tahun  
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+---
 
-*******
-License
-*******
+## 🛠️ Teknologi yang Digunakan
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+- HTML5  
+- CSS3  
+- JavaScript  
+- CodeIgniter 3  
+- MySQL  
+- Bootstrap  
 
-*********
-Resources
-*********
+---
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+## ⚙️ Cara Instalasi dan Menjalankan Project
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+1. **Clone repository ini**
 
-***************
-Acknowledgement
-***************
+   ```bash
+   git clone https://github.com/IrfanRomadhonWidodo/uts_pemweb2_H1D023023.git
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+2. **Masuk ke direktori project**
+	cd uts_pemweb2_H1D023023
+
+3. **Buat database dan impor file SQL**
+	- Buat database baru di MySQL (contoh: db_alumni)
+	- Import file db_alumni.sql yang sudah disediakan di dalam folder project
+
+
+## 📧 Kontak
+Email: irfanromadhonwidodo86@gmail.com
