@@ -7,8 +7,8 @@ class Alumni extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Alumni_model');
-        $this->load->helper('url'); // biar bisa pakai redirect dan base_url
-        $this->load->library('pagination'); // biar bisa pakai session
+        $this->load->helper('url'); 
+        $this->load->library('pagination'); 
     }
 
     public function index()
