@@ -14,7 +14,7 @@ class Alumni extends CI_Controller
     public function index()
     {
         
-        // Get filter values
+        // Untuk filter pencarian
         $keyword = $this->input->get('keyword');
         $tahun = $this->input->get('tahun');
         $prodi = $this->input->get('program_studi');
@@ -25,10 +25,8 @@ class Alumni extends CI_Controller
         $config['query_string_segment'] = 'page';
         $config['reuse_query_string'] = TRUE;
         
-        // Set per page records
+        // Set per layar
         $config['per_page'] = 10;
-        
-        // Get current page
         $page = $this->input->get('page') ? $this->input->get('page') : 0;
         
         // Get alumni with pagination
