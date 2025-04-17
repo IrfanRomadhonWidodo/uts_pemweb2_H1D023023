@@ -66,6 +66,8 @@ class Alumni_model extends CI_Model
         return $this->db->get('alumni')->result();
     }
 
+
+    //Chart Grafik
     public function getLulusanPerTahun()
     {
         return $this->db->select('tahun_lulus, COUNT(*) as total')
