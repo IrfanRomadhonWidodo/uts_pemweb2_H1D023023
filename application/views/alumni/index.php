@@ -6,6 +6,8 @@
     <title>Data Alumni Universitas Khaist</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root {
             --primary-color: #3498db;
@@ -177,7 +179,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= site_url('alumni/statistik') ?>">
+                    <a class="nav-link" href="<?= site_url('index.php/alumni/statistik') ?>">
                         <i class="fas fa-chart-bar me-1"></i> Statistik
                     </a>
                 </li>
@@ -234,7 +236,7 @@
     <div class="card search-card shadow-sm mb-4">
         <div class="card-body">
             <h5 class="card-title mb-3"><i class="fas fa-search me-2"></i>Cari Alumni</h5>
-            <form method="get" action="<?= site_url('alumni') ?>" class="row g-3 align-items-end">
+            <form method="get" action="<?= site_url('index.php/alumni/index') ?>" class="row g-3 align-items-end">
                 <div class="col-md-4">
                     <label class="form-label">Nama Alumni</label>
                     <div class="input-group">
@@ -251,20 +253,17 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Program Studi</label>
-                    <select name="prodi" class="form-select">
-                        <option value="">Semua Program Studi</option>
-                        <option value="Informatika" <?= $this->input->get('prodi') == 'Teknik Informatika' ? 'selected' : '' ?>>Teknik Informatika</option>
-                        <option value="Sistem Informasi" <?= $this->input->get('prodi') == 'Sistem Informasi' ? 'selected' : '' ?>>Sistem Informasi</option>
-                        <option value="Teknik Sipil" <?= $this->input->get('prodi') == 'Manajemen' ? 'selected' : '' ?>>Manajemen</option>
-                        <option value="Teknik Industri" <?= $this->input->get('prodi') == 'Akuntansi' ? 'selected' : '' ?>>Akuntansi</option>
-                    </select>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="fas fa-graduation-cap"></i></span>
+                        <input type="text" name="program_studi" class="form-control" placeholder="Program Studi" value="<?= $this->input->get('program_studi') ?>">
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="d-flex gap-2">
                         <button type="submit" class="btn btn-primary flex-fill">
                             <i class="fas fa-search me-1"></i> Cari
                         </button>
-                        <a href="<?= site_url('alumni') ?>" class="btn btn-outline-secondary flex-fill">
+                        <a href="<?= site_url('index.php/alumni') ?>" class="btn btn-outline-secondary flex-fill">
                             <i class="fas fa-redo me-1"></i> Reset
                         </a>
                     </div>
@@ -279,7 +278,7 @@
             <i class="fas fa-plus-circle me-2"></i> Tambah Alumni
         </a>
         <div>
-            <a href="<?= site_url('alumni/statistik') ?>" class="btn btn-info">
+            <a href="<?= site_url('index.php/alumni/statistik') ?>" class="btn btn-info">
                 <i class="fas fa-chart-pie me-2"></i> Lihat Statistik
             </a>
         </div>
@@ -310,7 +309,7 @@
                             <td class="text-center"><?= $no++ ?></td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar-sm bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-2 text-center" style="width: 40px; height: 40px; line-height: 34px;">
+                                    <div class="avatar-sm bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-2 text-center" style="width: 40px; height: 40px; line-height: 22px;">
                                         <?= substr($a->nama, 0, 1) ?>
                                     </div>
                                     <div>
@@ -323,14 +322,15 @@
                             <td><?= $a->program_studi ?></td>
                             <td><span class="badge-year"><?= $a->tahun_lulus ?></span></td>
                             <td class="text-center">
-                                <a href="<?= site_url('alumni/edit/'.$a->id) ?>" class="btn btn-sm btn-outline-warning action-btn">
+                                <a href="<?= site_url('index.php/alumni/edit/'.$a->id) ?>" class="btn btn-sm btn-outline-warning action-btn">
                                     <i class="fas fa-edit me-1"></i> Edit
                                 </a>
-                                <a href="<?= site_url('alumni/delete/'.$a->id) ?>" class="btn btn-sm btn-outline-danger action-btn" 
-                                onclick="return confirm('Yakin ingin menghapus data ini?')">
-                                    <i class="fas fa-trash me-1"></i> Hapus
+                                <a href="#" 
+                                class="btn btn-sm btn-outline-danger action-btn btn-delete" 
+                                data-id="<?= $a->id ?>" 
+                                data-nama="<?= $a->nama ?>">
+                                <i class="fas fa-trash me-1"></i> Hapus
                                 </a>
-
                             </td>
                         </tr>
                     <?php endforeach; else: ?>
@@ -364,7 +364,7 @@
                 <p class="text-muted">Portal pengelolaan data alumni universitas</p>
             </div>
             <div class="col-md-6 text-md-end">
-                <p class="mb-0">© <?= date('Y') ?> Universitas. All rights reserved.</p>
+                <p class="mb-0">© <?= date('Y') ?> All rights reserved.</p>
                 <small class="text-muted">Irfan Romadhon Widodo - H1D023023</small>
             </div>
         </div>
@@ -385,6 +385,34 @@
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const alumniId = this.getAttribute('data-id');
+                const alumniNama = this.getAttribute('data-nama');
+
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    text: `Data alumni "${alumniNama}" akan dihapus secara permanen.`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "<?= site_url('index.php/alumni/delete/') ?>" + alumniId;
+                    }
+                });
+            });
+        });
     });
 </script>
 </body>

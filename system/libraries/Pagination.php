@@ -523,10 +523,10 @@ class CI_Pagination {
 		}
 
 		// If something isn't quite right, back to the default base page.
-		if ( ! ctype_digit($this->cur_page) OR ($this->use_page_numbers && (int) $this->cur_page === 0))
-		{
-			$this->cur_page = $base_page;
+		if ($this->page_query_string && isset($_GET[$this->query_string_segment]) && ctype_digit((string)$_GET[$this->query_string_segment])) {
+			$this->cur_page = $_GET[$this->query_string_segment];
 		}
+		
 		else
 		{
 			// Make sure we're using integers for comparisons later.
