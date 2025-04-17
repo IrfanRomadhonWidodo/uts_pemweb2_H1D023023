@@ -76,6 +76,8 @@ class Alumni extends CI_Controller
         $this->load->view('alumni/index', $data);
     }
 
+
+        //Create Alumni Baru
         public function create()
         {
             $this->load->view('alumni/create');
@@ -96,7 +98,7 @@ class Alumni extends CI_Controller
             redirect('index.php/alumni');
         }
     
-
+        //Edit Alumni
         public function edit($id)
         {
             $data['alumni'] = $this->Alumni_model->getAlumniById($id);
@@ -117,13 +119,14 @@ class Alumni extends CI_Controller
             redirect('index.php/alumni');
         }
 
+        //Delete Alumni
         public function delete($id)
         {
             $this->Alumni_model->deleteAlumni($id);
             redirect('index.php/alumni');
         }
 
-
+        //Detail Alumni
         public function statistik()
         {
             $data['per_tahun'] = $this->Alumni_model->getLulusanPerTahun();
